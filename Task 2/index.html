@@ -9,10 +9,11 @@
     <script src="chart.js"></script>
     <div id="wrapper"></div>
     <div id = "option_choose">
-        <button name="TempLow" type="button" value="tempLow">Temp Low</button>
-        <button name="TempHigh" type="button" value="tempHigh">Temp High</button>
-        <button name="TempMin" type="button" value="tempMin">Temp Min</button>
-        <button name="TempMax" type="button" value="tempMax">Temp Max</button>
+        <button name="LowButton" id="LowButton" type="button" onclick="buildPlot(this.id, 'temperatureLow')">Temp Low</button>
+        <button name="HighButton" id="HighButton" type="button" onclick="buildPlot(this.id, 'temperatureHigh')">Temp High</button>
+        <button name="MinButton" id="MinButton"  type="button"  onclick="buildPlot(this.id, 'temperatureMin')">Temp Min</button>
+        <button name="MaxButton" id="MaxButton" type="button" onclick="buildPlot(this.id, 'temperatureMax')">Temp Max</button>
+
     </div>
 </body>
 </html>

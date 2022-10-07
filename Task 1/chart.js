@@ -1,6 +1,6 @@
 async function buildPlot() {
     console.log("Hello world");
-    const data = await d3.json("./my_weather_data.json");
+    const data = await d3.json("my_weather_data.json");
     //console.table(data);
     const dateParser = d3.timeParse("%Y-%m-%d");
     const yAccessor = (d) => d.temperatureMin;
