@@ -1,6 +1,6 @@
 async function buildPlot() {
     console.log("Hello world");
-    const data = await d3.json("my_weather_data.json");
+    const data = await d3.json("./my_weather_data.json");
     //console.table(data);
     const dateParser = d3.timeParse("%Y-%m-%d");
     const yAccessor = (d) => d.temperatureMin;
@@ -36,10 +36,6 @@ async function buildPlot() {
     const xScaler = d3.scaleTime()
         .domain(d3.extent(data,xAccessor))
         .range([0,dimension.boundedWidth]);
-
-    const yScalerHigh = d3.scaleLinear()
-        .domain(d3.extent(data,yAccessorHigh))
-        .range([dimension.boundedHeight,0]);
 
 
     var lineGenerator = d3.line()
