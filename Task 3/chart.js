@@ -1,18 +1,18 @@
-async function buildPlot() {
-    var dimension = {
-        width: window.innerWidth * 0.9,
-        height: 800,
-        margin: {
-            top: 30,
-            left: 30,
-            bottom: 20,
-            right: 30
-        }
-    };
 
-    dimension.boundedWidth = dimension.width - dimension.margin.left - dimension.margin.right;
-    dimension.boundedHeight = dimension.height - dimension.margin.top - dimension.margin.bottom;
+let dimension = {
+    width: window.innerWidth * 0.6,
+    height: 800,
+    margin: {
+        top: 30,
+        left: 30,
+        bottom: 20,
+        right: 30
+    }
+}
+dimension.boundedWidth = dimension.width - dimension.margin.left - dimension.margin.right;
+dimension.boundedHeight = dimension.height - dimension.margin.top - dimension.margin.bottom;
 
+function buildPlot() {
 
     const wrapper = d3.select("#wrapper");
 
@@ -26,21 +26,21 @@ async function buildPlot() {
     const xAcc = d => d.x;
     const yAcc = d => d.y;
 
-    var dataset1 = [];
-    for (var i = 0; i < 50; i++) {
-        var x = Math.floor((Math.random() * 10) + 1);
-        var y = Math.floor((Math.random() * 10) + 1);
+    let dataset1 = [];
+    for (let i = 0; i < 50; i++) {
+        let x = Math.floor((Math.random() * 10) + 1);
+        let y = Math.floor((Math.random() * 10) + 1);
         dataset1.push({
             "x": x,
             "y": y
         });
-    };
+    }
 
 
-    var dataset2 = [];
-    for (var i = 0; i < 50; i++) {
-        var x = Math.floor((Math.random() * 10) + 1);
-        var y = Math.floor((Math.random() * 10) + 1);
+    let dataset2 = [];
+    for (let i = 0; i < 50; i++) {
+        let x = Math.floor((Math.random() * 10) + 1);
+        let y = Math.floor((Math.random() * 10) + 1);
         dataset2.push({
             "x": x,
             "y": y
@@ -58,14 +58,14 @@ async function buildPlot() {
 
 
     const xAxisGenerator = d3.axisBottom()
-        .scale(yScale);
+        .scale(xScale);
 
     const xAxis = bounds.append("g")
         .call(xAxisGenerator)
         .style("transform", `translateY(${dimension.boundedHeight}px)`);
 
     const yAxisGenerator = d3.axisLeft()
-        .scale(xScale);
+        .scale(yScale);
 
     const yAxis = bounds.append("g")
         .call(yAxisGenerator)
@@ -81,9 +81,11 @@ async function buildPlot() {
         .attr("cy", d => yScale(yAcc(d)))
         .attr("r", "1")
         .attr("stroke", "green")
-        .attr("stroke-width", 1)
         .attr("fill", "#FFFFFF")
-        .attr("d", d3.symbol().type(d3.symbolCircle));
+        .attr("d", d3.symbol().type(d3.symbolCircle))
+        .attr("transform", function (d) {
+            return "translate(" + xScale(xAcc(d)) + "," + yScale(yAcc(d)) + ")";
+        });
 
     let rhombus = bounds.selectAll("rhombus")
         .data(dataset2)
@@ -94,14 +96,16 @@ async function buildPlot() {
         .attr("cy", d => yScale(yAcc(d)))
         .attr("r", "1")
         .attr("stroke", "blue")
-        .attr("stroke-width", 1)
         .attr("fill", "#FFFFFF")
-        .attr("d", d3.symbol().type(d3.symbolDiamond));
+        .attr("d", d3.symbol().type(d3.symbolDiamond))
+        .attr("transform", function (d) {
+            return "translate(" + xScale(xAcc(d)) + "," + yScale(yAcc(d)) + ")";
+        });
 
 
 }
 
-async function clean() {
+function clean() {
     d3.select("svg").remove();
 }
 
