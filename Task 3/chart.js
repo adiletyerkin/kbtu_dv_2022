@@ -12,8 +12,13 @@ let dimension = {
 dimension.boundedWidth = dimension.width - dimension.margin.left - dimension.margin.right;
 dimension.boundedHeight = dimension.height - dimension.margin.top - dimension.margin.bottom;
 
-function buildPlot() {
+function clean() {
+    d3.select("svg").remove();
+}
 
+
+function buildPlot() {
+    clean();
     const wrapper = d3.select("#wrapper");
 
     const svg = wrapper.append("svg")
@@ -60,14 +65,14 @@ function buildPlot() {
     const xAxisGenerator = d3.axisBottom()
         .scale(xScale);
 
-    const xAxis = bounds.append("g")
+    const xAxis = svg.append("g")
         .call(xAxisGenerator)
         .style("transform", `translateY(${dimension.boundedHeight}px)`);
 
     const yAxisGenerator = d3.axisLeft()
         .scale(yScale);
 
-    const yAxis = bounds.append("g")
+    const yAxis = svg.append("g")
         .call(yAxisGenerator)
         .style("transform", `translateX(${dimension.margin.left}px)`);
 
@@ -105,8 +110,7 @@ function buildPlot() {
 
 }
 
-function clean() {
-    d3.select("svg").remove();
-}
 
 buildPlot()
+
+
