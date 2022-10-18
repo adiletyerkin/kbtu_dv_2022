@@ -5,11 +5,12 @@
     <title>Scatter plot</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
 </head>
-<script src="chart.js"></script>
-<div id="wrapper"></div>
+<body>
+    <script src="chart.js"></script>
+    <div id="wrapper"></div>
 
-<button name="generate" id="generate">Generate</button>
-<button name="clear" id="clear">Clear</button>
+    <button name="generate" id="generate" onclick="buildPlot()">Generate</button>
+    <button name="clear" id="clear" onclick="clean()">Clear</button>
 
 </body>
 </html>
