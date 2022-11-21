@@ -79,7 +79,7 @@ async function createForceLayout() {
       .attr("y", 15)
       .text(d => d.id)
 	  .on('click', function(d){		
-        var result = prompt('Change the name of the node', d.id);
+        var result = prompt('Change name of the node (write new name)', d.id);
 		if(result) {
 			d3.select(this).text(result)
         }
