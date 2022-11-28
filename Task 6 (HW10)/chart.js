@@ -89,14 +89,11 @@ async function buildPlot() {
         .attr("cx", d => xScaler(xAccessor(d)))
         .attr("cy", d => yScaler(yAccessor(d)))
         .attr("r", "1")
-        // .attr("stroke", "blue")
         .attr("fill", function (d) { return color(d.label)})
         .attr("d", d3.symbol().type(d3.symbolSquare))
         .attr("transform", function (d) {
             return "translate(" + xScaler(xAccessor(d)) + "," + yScaler(yAccessor(d)) + ")";
         });
-
-
 
 }
 
