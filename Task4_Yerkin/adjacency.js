@@ -31,10 +31,10 @@ async function build() {
     }
 
     var dimension = {
-        width: window.innerWidth*0.8,
+        width: window.innerWidth*0.9,
         height: window.innerWidth*0.8,
         margin: {
-            top: 250,
+            top: 200,
             right: 10,
             bottom: 10,
             left: 450
@@ -60,10 +60,10 @@ async function build() {
         .enter()
         .append("rect")
         .attr("class","grid")
-        .attr("width",25)
-        .attr("height",25)
-        .attr("x", d=>d.x*25)
-        .attr("y", d=>d.y*25)
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("x", d=>d.x*20)
+        .attr("y", d=>d.y*20)
         .style("fill-opacity", d=>d.weight*0.2)
 
     const namesX = wrapper
@@ -73,7 +73,7 @@ async function build() {
         .data(nodes)
         .enter()
         .append("text")
-        .attr("y", (d, i)=> i * 25 + 12.5)
+        .attr("y", (d, i)=> i * 20 + 12.5)
         .text(d=>d.id)
         .style("text-anchor","start")
         .attr("transform", "rotate(270)");
@@ -86,7 +86,7 @@ async function build() {
         .data(nodes2)
         .enter()
         .append("text")
-        .attr("y", (d, i)=> i * 25 + 12.5)
+        .attr("y", (d, i)=> i * 20 + 12.5)
         .text(d=>d.id)
         .style("text-anchor","end");
 
