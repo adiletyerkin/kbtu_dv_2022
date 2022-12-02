@@ -41,13 +41,9 @@ async function build() {
         }
     }
 
-    dimension.boundedWidth = dimension.width
-        - dimension.margin.right
-        - dimension.margin.left;
+    dimension.boundedWidth = dimension.width - dimension.margin.right - dimension.margin.left;
 
-    dimension.boundedHeight = dimension.height
-        - dimension.margin.top
-        - dimension.margin.bottom;
+    dimension.boundedHeight = dimension.height - dimension.margin.top - dimension.margin.bottom;
 
     const wrapper = d3.select("#wrapper")
         .append("svg")
@@ -77,7 +73,7 @@ async function build() {
         .data(nodes)
         .enter()
         .append("text")
-        .attr("y",(d,i)=> i*25+12.5)
+        .attr("y", (d, i)=> i * 25 + 12.5)
         .text(d=>d.id)
         .style("text-anchor","start")
         .attr("transform", "rotate(270)");
@@ -90,7 +86,7 @@ async function build() {
         .data(nodes2)
         .enter()
         .append("text")
-        .attr("y",(d,i)=> i*25+12.5)
+        .attr("y", (d, i)=> i * 25 + 12.5)
         .text(d=>d.id)
         .style("text-anchor","end");
 
